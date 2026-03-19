@@ -20,7 +20,8 @@ const GALLERY_COUNTS = {
   portraits: 0,
   macro:     4,
   nature:    0,
-  home:      0    // Featured images on homepage (images/home/home-1.jpg …)
+  home:      0,
+  gallery:   15   // Featured images on homepage (images/home/home-1.jpg …)
 };
 
 /* Maximum number of images the auto-detector will try to load */
@@ -483,6 +484,16 @@ function initNatureGallery() {
     basePath: 'images'
   });
 }
+// Gallery page (NEW)
+function initGalleryPage() {
+  probeAndLoadGallery({
+    containerId: 'gallery-container',
+    folder: 'gallery',
+    prefix: 'gallery',
+    configCount: GALLERY_COUNTS.gallery,
+    basePath: 'images'
+  });
+}
 
 /* ─── Page Router ────────────────────────────────────────── */
 function detectAndInitPage() {
@@ -506,6 +517,9 @@ function detectAndInitPage() {
       break;
     case page.includes('nature'):
       initNatureGallery();
+      break;
+    case page.includes('gallery'):
+      initGalleryPage();
       break;
     default:
       break;
